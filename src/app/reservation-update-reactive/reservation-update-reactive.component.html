@@ -4,7 +4,7 @@
     </div>
 
     <div class="panel-body">
-        <form class="form-horizontal" novalidate (ngSubmit)="update()" [formGroup]="reservationForm">
+        <form *ngIf="reservation"  class="form-horizontal" novalidate (ngSubmit)="update()" [formGroup]="reservationForm">
             <fieldset>
                 <div formGroupName="timeGroup" [ngClass]="{'is-invalid': reservationForm.get('timeGroup').errors}">
                     <div class="form-group"

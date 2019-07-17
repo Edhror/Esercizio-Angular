@@ -3,6 +3,7 @@ import { Reservation } from '../reservation-list/reservation';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { ReservationService } from '../reservation-list/reservation-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpReservationService } from '../reservation-list/http-reservation-service';
 
 function timeMatcher(c: AbstractControl): { [key: string]: boolean } | null {
   let startControl = c.get('start');
@@ -35,11 +36,12 @@ export class ReservationUpdateReactiveComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private reservationService: ReservationService, private fb: FormBuilder) { }
+    private reservationService: HttpReservationService, private fb: FormBuilder) { }
 
   ngOnInit() {
     let id: number = +this.route.snapshot.paramMap.get('id');
-    this.reservation = this.reservationService.byId(id);
+    
+ 
     this.reservationForm = this.fb.group({
       timeGroup: this.fb.group({
         start: ['', [Validators.required]],
@@ -53,6 +55,16 @@ export class ReservationUpdateReactiveComponent implements OnInit {
       cost: ['', [Validators.required]],
 
     });
+
+    this.reservationService.byId(id).subscribe(
+      r =>   {
+        this.reservation = r;
+        console.log("res");
+        console.log(r);
+      }
+      );
+
+
   }
 public update() : void {
   console.log(this.reservationForm.value);

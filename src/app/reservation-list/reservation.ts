@@ -1,8 +1,8 @@
 export class Reservation {
    
 
-    constructor(private _id: number, private _start: Date,
-        private _end: Date, private _cost: number, private _clientId: number,
+    constructor(private _id: number, private _start: String,
+        private _end: String, private _cost: number, private _clientId: number,
         private _courtId: number, private _paid: boolean) {
     }
 
@@ -28,16 +28,16 @@ export class Reservation {
     public set cost(value: number) {
         this._cost = value;
     }
-    public get end(): Date {
+    public get end(): String {
         return this._end;
     }
-    public set end(value: Date) {
+    public set end(value: String) {
         this._end = value;
     }
-    public get start(): Date {
+    public get start(): String {
         return this._start;
     }
-    public set start(value: Date) {
+    public set start(value: String) {
         this._start = value;
     }
     public get id(): number {

@@ -9,6 +9,8 @@ import { ReservationUpdateComponent } from './reservation-update/reservation-upd
 import { ReservationService } from './reservation-list/reservation-service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReservationUpdateReactiveComponent } from './reservation-update-reactive/reservation-update-reactive.component';
+import { HttpClientModule } from '@angular/common/http'
+import { HttpReservationService } from './reservation-list/http-reservation-service';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { ReservationUpdateReactiveComponent } from './reservation-update-reactiv
     BrowserModule,
     FormsModule, 
     ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: 'reservations', component: ReservationListComponent},
       { path: 'courts', component: CourtListComponent},
@@ -32,7 +35,7 @@ import { ReservationUpdateReactiveComponent } from './reservation-update-reactiv
       { path: '**', redirectTo: 'reservations', pathMatch: 'full'},
     ] /* {useHash: true} */), 
   ],
-  providers: [ ReservationService ],
+  providers: [ ReservationService, HttpReservationService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
