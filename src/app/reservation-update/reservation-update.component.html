@@ -8,7 +8,7 @@
                 <label class="col-md-2 control-label" for="start">Reservation start</label>
                 <div class="col-md-8">
                     <input class="form-control" id="start" type="datetime-local" placeholder="reservatiom start"
-                        required [(ngModel)]="reservation.start" name="start" #start="ngModel" />
+                        required [ngModel]="reservation.start | date: 'yyyy-MM-ddThh:mm'" (ngModelChange)="reservation.start = $event" name="start" #start="ngModel" />
                     <span class="help-block" *ngIf="(start.touched || start.dirty) && start.errors">
                         <span *ngIf="start.errors.required">
                             Please enter start reservation time.
@@ -18,8 +18,8 @@
                 <div class="form-group" [ngClass]="{'has-error': (end.touched || end.dirty) && !end.valid }">
                     <label class="col-md-2 control-label" for="end">Reservation end</label>
                     <div class="col-md-8">
-                        <input class="form-control" id="end" type="datetime-local" placeholder="reservatiom end"
-                            required [(ngModel)]="reservation.end" name="end" #end="ngModel" />
+                        <input class="form-control" id="end" type="datetime-local" placeholder="reservation end"
+                            required [ngModel]="reservation.end | date: 'yyyy-MM-ddThh:mm'" (ngModelChange)="reservation.end = $event" name="end" #end="ngModel" />
                         <span class="help-block" *ngIf="(end.touched || end.dirty) && end.errors">
                             <span *ngIf="end.errors.required">
                                 Please enter end reservation time.
@@ -36,9 +36,6 @@
                             </button>
                         </span>
                     </div>
-
-
-
                 </div>
             </div>
         </form>
