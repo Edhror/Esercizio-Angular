@@ -1,0 +1,52 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Update reservation
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" novalidate (ngSubmit)="update(updateForm)" #updateForm="ngForm">
+            <div class="form-group" [ngClass]="{'has-error': (start.touched || start.dirty) && !start.valid }">
+                <label class="col-md-2 control-label" for="start">Reservation start</label>
+                <div class="col-md-8">
+                    <input class="form-control" id="start" type="datetime-local" placeholder="reservatiom start"
+                        required [(ngModel)]="reservation.start" name="start" #start="ngModel" />
+                    <span class="help-block" *ngIf="(start.touched || start.dirty) && start.errors">
+                        <span *ngIf="start.errors.required">
+                            Please enter start reservation time.
+                        </span>
+                    </span>
+                </div>
+                <div class="form-group" [ngClass]="{'has-error': (end.touched || end.dirty) && !end.valid }">
+                    <label class="col-md-2 control-label" for="end">Reservation end</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="end" type="datetime-local" placeholder="reservatiom end"
+                            required [(ngModel)]="reservation.end" name="end" #end="ngModel" />
+                        <span class="help-block" *ngIf="(end.touched || end.dirty) && end.errors">
+                            <span *ngIf="end.errors.required">
+                                Please enter end reservation time.
+                            </span>
+                        </span>
+                    </div>
+
+
+
+                    <div class="col-md-4 col-md-offset-2">
+                        <span>
+                            <button class="btn btn-primary" type="submit" [disabled]="!updateForm.valid">
+                                Update
+                            </button>
+                        </span>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+
+</div>
